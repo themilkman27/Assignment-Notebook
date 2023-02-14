@@ -7,7 +7,9 @@ struct ContentView: View {
             NavigationView{
                 ZStack{
 
+
                 List{
+                    
                     ForEach(assignmentNotebook.Assignments){
                         Assignment in HStack{
                             VStack(alignment: .leading){
@@ -18,7 +20,10 @@ struct ContentView: View {
                             Spacer()
                             Text(Assignment.dueDate, style: .date)
                         }
+
+
                     }
+                    
                     .onMove{indices, newOffset in assignmentNotebook.Assignments.move(fromOffsets: indices, toOffset: newOffset)
                     }
                     .onDelete{indexSet in assignmentNotebook.Assignments.remove(atOffsets: indexSet)}
@@ -26,15 +31,16 @@ struct ContentView: View {
                 .sheet(isPresented: $showingAddAssignmentView, content: {
                     AddAssignment(assignment: assignmentNotebook)
                 })
-
                 .navigationBarTitle("Assignment Notebook", displayMode: .inline)
-                .background(Color.purple)
+                .background(Color.red)
                 .navigationBarItems(leading: EditButton(), trailing: Button(action:{
                     showingAddAssignmentView = true }){
                         Image(systemName: "plus")
                     })
             }
+
         }
+
     }
 }
 struct ContentView_Previews: PreviewProvider {
