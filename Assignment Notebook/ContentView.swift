@@ -6,7 +6,7 @@ struct ContentView: View {
     var body: some View {
             NavigationView{
                 ZStack{
-                    
+
                 List{
                     ForEach(assignmentNotebook.Assignments){
                         Assignment in HStack{
@@ -26,8 +26,9 @@ struct ContentView: View {
                 .sheet(isPresented: $showingAddAssignmentView, content: {
                     AddAssignment(assignment: assignmentNotebook)
                 })
+
                 .navigationBarTitle("Assignment Notebook", displayMode: .inline)
-                    
+                .background(Color.purple)
                 .navigationBarItems(leading: EditButton(), trailing: Button(action:{
                     showingAddAssignmentView = true }){
                         Image(systemName: "plus")
